@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HÁI LỘC ĐẦU XUÂN 2026</title>
+<style>
+/* Nền đỏ chủ đạo, dịu mắt cho mobile */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ff3b3b; 
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container trung tâm */
+.container {
+    border: 3px solid #ffd700;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 25px 15px;
+    margin: 30px 10px;
+    width: 95%;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Tiêu đề */
+h1 { font-size: 32px; margin: 8px 0; text-shadow: 1px 1px 4px #000; }
+h2 { font-size: 20px; margin: 5px 0; text-shadow: 1px 1px 3px #000; }
+
+/* Input và button */
+input[type="number"] {
+    width: 70px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #ffd700; 
+    color: #d40000; 
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #ffcc00;
+    color: #a10000;
+}
+
+/* Kết quả */
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    min-height: 60px;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Họa tiết 4 góc (hoa mai, đèn lồng) */
+.decor {
+    position: fixed; 
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+}
+.decor-left { left: 5px; top: 5px; }
+.decor-right { right: 5px; top: 5px; }
+.decor-bottom-left { left: 5px; bottom: 5px; }
+.decor-bottom-right { right: 5px; bottom: 5px; }
+
+/* Responsive mobile */
+@media (max-width: 480px){
+    h1 { font-size: 28px; }
+    h2 { font-size: 18px; }
+    input[type="number"] { width: 60px; font-size: 16px; }
+    button { padding: 8px 16px; font-size: 16px; }
+    #result { font-size: 16px; }
+    .decor { width: 50px; height: 50px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Họa tiết 4 góc -->
+<img src="https://i.imgur.com/qFjU4PB.png" class="decor decor-left" alt="Hoa mai">
+<img src="https://i.imgur.com/qFjU4PB.png" class="decor decor-right" alt="Hoa mai">
+<img src="https://i.imgur.com/8kY3T0f.png" class="decor decor-bottom-left" alt="Hoa văn">
+<img src="https://i.imgur.com/8kY3T0f.png" class="decor decor-bottom-right" alt="Hoa văn">
+
+<div class="container">
+    <h1>TẾT DÂN TỘC 2026</h1>
+    <h2>SƠN LÂM VỌNG XUÂN</h2>
+    <h2>HÁI LỘC ĐẦU XUÂN</h2>
+
+    <p>Nhập số quẻ bạn rút được (1 - 50)</p>
+    <input type="number" id="numberInput" min="1" max="50" placeholder="1 - 50">
+    <button onclick="gieoQue()">GIEO QUẺ</button>
+
+    <div id="result"></div>
+</div>
+
+<footer>
+<p>EQUALITY CLUB - Câu lạc bộ Thúc đẩy Bình đẳng Giới</p>
+<p>Email: clbthucdaybinhdanggioi.ou@gmail.com | Fanpage: Equality Club - OU</p>
+</footer>
+
+<script>
+const queData = {
+1:["Năm mới chúc bạn học hành thảnh thơi, điểm số tăng vù vù!","Năm mới chúc bạn mở sách ra là gặp may, kiến thức đầy tay!"],
+2:["Năm mới chúc bạn thi đâu thắng đó, mọi bài tập đều dễ dàng!","Năm mới chúc bạn đọc sách mỗi ngày, tri thức dồi dào, ước mơ bay cao!"],
+3:["Năm mới chúc bạn gặp người thương như ý, tim luôn rộn ràng!","Năm mới chúc bạn tình duyên thắm nở, cười tươi như hoa mai!"],
+4:["Năm mới chúc bạn duyên lành bất ngờ, hạnh phúc cứ đầy tràn!","Năm mới chúc bạn mở lòng đón yêu thương, vui như Tết đến sớm!"],
+5:["Năm mới chúc bạn nhà cửa bình yên, cả nhà cười vang khắp nơi!","Năm mới chúc bạn gia đình sum vầy, bữa cơm nào cũng ngọt ngào!"],
+6:["Năm mới chúc bạn tình thân ấm áp, mọi người luôn vui vẻ bên nhau!","Năm mới chúc bạn quan tâm nhau mỗi ngày, hạnh phúc nối dài quanh nhà!"],
+7:["Năm mới chúc bạn khỏe mạnh, năng lượng đầy tràn, cười tươi suốt năm!","Năm mới chúc bạn tinh thần phơi phới, mọi ngày đều vui và khỏe!"],
+8:["Năm mới chúc bạn chạy bộ vui vẻ, ăn uống điều độ, sức khỏe dồi dào!","Năm mới chúc bạn tràn đầy sinh lực, mỗi ngày đều là ngày tuyệt vời!"],
+9:["Năm mới chúc bạn công việc suôn sẻ, deadline nhẹ như lông hồng!","Năm mới chúc bạn ý tưởng bay cao, dự án nào cũng thành công rực rỡ!"],
+10:["Năm mới chúc bạn đồng đội vui vẻ, mọi kế hoạch đều hoàn hảo!","Năm mới chúc bạn hăng hái hết mình, sự nghiệp bùng nổ suốt năm!"],
+11:["Năm mới chúc bạn tiền vào đầy túi, chi tiêu thoải mái, vẫn dư dả!","Năm mới chúc bạn may mắn bất ngờ, lộc xuân như mưa rơi đầy nhà!"],
+12:["Năm mới chúc bạn tiết kiệm khôn ngoan, của cải dồi dào quanh năm!","Năm mới chúc bạn mở ví ra là gặp may, lộc đầy tay!"],
+13:["Năm mới chúc bạn chăm chỉ, kiên trì, mọi kiến thức đều thấm sâu!","Năm mới chúc bạn vượt qua kỳ thi dễ dàng, niềm vui ngập tràn!"],
+14:["Năm mới chúc bạn học hỏi nhanh, tiếp thu kiến thức như nước chảy!","Năm mới chúc bạn luôn tò mò, khám phá, ý tưởng bay cao!"],
+15:["Năm mới chúc bạn tình cảm ngọt ngào, hạnh phúc rộn ràng cả năm!","Năm mới chúc bạn cười tươi mỗi ngày, yêu thương tràn đầy!"],
+16:["Năm mới chúc bạn gặp người hợp ý, cùng nhau vui Tết!","Năm mới chúc bạn yêu thương đủ đầy, tình duyên nở rực rỡ!"],
+17:["Năm mới chúc bạn nhà cửa sáng sủa, Tết nào cũng rộn rã tiếng cười!","Năm mới chúc bạn cả nhà khỏe mạnh, cùng nhau đón Tết an vui!"],
+18:["Năm mới chúc bạn gia đình hòa thuận, niềm vui tràn ngập mái nhà!","Năm mới chúc bạn mọi người yêu thương nhau, Tết đến hạnh phúc đầy!"],
+19:["Năm mới chúc bạn sức khỏe vững vàng, tinh thần minh mẫn, vui vẻ!","Năm mới chúc bạn ăn uống lành mạnh, tập luyện đều, luôn khỏe mạnh!"],
+20:["Năm mới chúc bạn tinh thần lạc quan, cơ thể dẻo dai suốt năm!","Năm mới chúc bạn tập thể thao vui, năng lượng tràn đầy, vui hết mình!"],
+21:["Năm mới chúc bạn làm việc hiệu quả, thành công nối tiếp, vui rộn rã!","Năm mới chúc bạn dự án thành công, nhận nhiều lời khen ngợi!"],
+22:["Năm mới chúc bạn năng suất cao, công việc thuận buồm xuôi gió!","Năm mới chúc bạn vượt mọi thử thách, mỗi ngày đều tiến bộ!"],
+23:["Năm mới chúc bạn gặp nhiều cơ hội tài lộc, tiền bạc hanh thông!","Năm mới chúc bạn lộc trời trao, Tết nào cũng dư dả, vui vẻ!"],
+24:["Năm mới chúc bạn tiền tài thuận lợi, mọi kế hoạch đều dư dả!","Năm mới chúc bạn năm mới đầy may mắn, tiền bạc rủng rỉnh khắp nơi!"],
+25:["Năm mới chúc bạn học tập vui vẻ, mỗi ngày là một trải nghiệm mới!","Năm mới chúc bạn làm bài tập nhanh gọn, thành tích tỏa sáng!"],
+26:["Năm mới chúc bạn chăm chỉ, kiên trì, mọi kiến thức đều thấm sâu!","Năm mới chúc bạn vượt qua kỳ thi dễ dàng, niềm vui ngập tràn!"],
+27:["Năm mới chúc bạn tim rung động, niềm vui tràn khắp xuân sang!","Năm mới chúc bạn mối quan hệ ấm áp, hạnh phúc ngập tràn!"],
+28:["Năm mới chúc bạn duyên lành bất ngờ, hạnh phúc cứ đầy tràn!","Năm mới chúc bạn mở lòng đón yêu thương, vui như Tết đến sớm!"],
+29:["Năm mới chúc bạn sum vầy đủ đầy, nhà cửa luôn ấm áp và vui vẻ!","Năm mới chúc bạn mọi thành viên bình an, tiếng cười rộn vang cả năm!"],
+30:["Năm mới chúc bạn nhà cửa bình yên, cả nhà cười vang khắp nơi!","Năm mới chúc bạn gia đình sum vầy, bữa cơm nào cũng ngọt ngào!"],
+31:["Năm mới chúc bạn khỏe mạnh, năng lượng đầy tràn, cười tươi suốt năm!","Năm mới chúc bạn tinh thần phơi phới, mọi ngày đều vui và khỏe!"],
+32:["Năm mới chúc bạn chạy bộ vui vẻ, ăn uống điều độ, sức khỏe dồi dào!","Năm mới chúc bạn tràn đầy sinh lực, mỗi ngày đều là ngày tuyệt vời!"],
+33:["Năm mới chúc bạn công việc suôn sẻ, deadline nhẹ như lông hồng!","Năm mới chúc bạn ý tưởng bay cao, dự án nào cũng thành công rực rỡ!"],
+34:["Năm mới chúc bạn đồng đội vui vẻ, mọi kế hoạch đều hoàn hảo!","Năm mới chúc bạn hăng hái hết mình, sự nghiệp bùng nổ suốt năm!"],
+35:["Năm mới chúc bạn tiền vào đầy túi, chi tiêu thoải mái, vẫn dư dả!","Năm mới chúc bạn may mắn bất ngờ, lộc xuân như mưa rơi đầy nhà!"],
+36:["Năm mới chúc bạn tiết kiệm khôn ngoan, của cải dồi dào quanh năm!","Năm mới chúc bạn mở ví ra là gặp may, lộc đầy tay!"],
+37:["Năm mới chúc bạn học hỏi nhanh, tiếp thu kiến thức như nước chảy!","Năm mới chúc bạn luôn tò mò, khám phá, ý tưởng bay cao!"],
+38:["Năm mới chúc bạn gặp người hợp ý, cùng nhau vui Tết!","Năm mới chúc bạn yêu thương đủ đầy, tình duyên nở rực rỡ!"],
+39:["Năm mới chúc bạn nhà cửa sáng sủa, Tết nào cũng rộn rã tiếng cười!","Năm mới chúc bạn cả nhà khỏe mạnh, cùng nhau đón Tết an vui!"],
+40:["Năm mới chúc bạn tinh thần lạc quan, cơ thể dẻo dai suốt năm!","Năm mới chúc bạn tập thể thao vui, năng lượng tràn đầy, vui hết mình!"],
+41:["Năm mới chúc bạn làm việc hiệu quả, thành công nối tiếp, vui rộn rã!","Năm mới chúc bạn dự án thành công, nhận nhiều lời khen ngợi!"],
+42:["Năm mới chúc bạn năng suất cao, công việc thuận buồm xuôi gió!","Năm mới chúc bạn vượt mọi thử thách, mỗi ngày đều tiến bộ!"],
+43:["Năm mới chúc bạn gặp nhiều cơ hội tài lộc, tiền bạc hanh thông!","Năm mới chúc bạn lộc trời trao, Tết nào cũng dư dả, vui vẻ!"],
+44:["Năm mới chúc bạn tiền tài thuận lợi, mọi kế hoạch đều dư dả!","Năm mới chúc bạn năm mới đầy may mắn, tiền bạc rủng rỉnh khắp nơi!"],
+45:["Năm mới chúc bạn học tập vui vẻ, mỗi ngày là một trải nghiệm mới!","Năm mới chúc bạn làm bài tập nhanh gọn, thành tích tỏa sáng!"],
+46:["Năm mới chúc bạn tim rung động, niềm vui tràn khắp xuân sang!","Năm mới chúc bạn mối quan hệ ấm áp, hạnh phúc ngập tràn!"],
+47:["Năm mới chúc bạn sum vầy đủ đầy, nhà cửa luôn ấm áp và vui vẻ!","Năm mới chúc bạn mọi thành viên bình an, tiếng cười rộn vang cả năm!"],
+48:["Năm mới chúc bạn khỏe mạnh, năng lượng đầy tràn, cười tươi suốt năm!","Năm mới chúc bạn tinh thần phơi phới, mọi ngày đều vui và khỏe!"],
+49:["Năm mới chúc bạn công việc suôn sẻ, deadline nhẹ như lông hồng!","Năm mới chúc bạn ý tưởng bay cao, dự án nào cũng thành công rực rỡ!"],
+50:["Năm mới chúc bạn tiền vào đầy túi, chi tiêu thoải mái, vẫn dư dả!","Năm mới chúc bạn may mắn bất ngờ, lộc xuân như mưa rơi đầy nhà!"]
+};
+
+function gieoQue(){
+    const input = document.getElementById("numberInput").value;
+    const num = parseInt(input);
+    const resultDiv = document.getElementById("result");
+    if(num >=1 && num <=50){
+        const queList = queData[num];
+        const que = queList[Math.floor(Math.random()*queList.length)];
+        resultDiv.textContent = que;
+    } else {
+        resultDiv.textContent = "Vui lòng nhập số từ 1 đến 50!";
+    }
+}
+</script>
+</body>
+</html>
